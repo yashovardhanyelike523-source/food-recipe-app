@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Recipe Details - Food Recipe App</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <span>🍳</span>
+            <h1>Food Recipe App</h1>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#recipes">Recipes</a>
+            <a href="index.html#categories">Categories</a>
+            <a href="saved.html">Saved Recipes</a>
+            <a href="about.html">About</a>
+        </nav>
+
+        <div class="user-area" id="userArea">
+
+            <a href="signin.html" class="signin">
+                Sign In
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="recipe-details">
+
+            <div class="recipe-details-image">
+
+                <img
+                    id="recipeImage"
+                    src=""
+                    alt="Recipe"
+                >
+
+            </div>
+
+
+            <div class="recipe-details-content">
+
+                <h1 id="recipeName">
+                    Recipe
+                </h1>
+
+
+                <div class="recipe-info">
+
+                    <div class="info-box">
+
+                        <span class="info-icon">
+                            🍽️
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Category
+                            </small>
+
+                            <strong id="recipeCategory">
+                                Not available
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span class="info-icon">
+                            🌍
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Cuisine
+                            </small>
+
+                            <strong id="recipeCuisine">
+                                Not available
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="recipe-buttons">
+
+                    <button
+                        id="saveButton"
+                        class="save-button"
+                    >
+                        Save Recipe
+                    </button>
+
+
+                    <button
+                        id="shareButton"
+                        class="share-button"
+                    >
+                        Share
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="ingredients-section">
+
+            <h2>
+                Ingredients
+            </h2>
+
+            <ul id="ingredients">
+
+            </ul>
+
+        </section>
+
+
+        <section class="instructions-section">
+
+            <h2>
+                Instructions
+            </h2>
+
+            <ol id="instructions">
+
+            </ol>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Food Recipe App
+        </p>
+
+    </footer>
+
+
+    <script src="JS/script.js"></script>
+    <script src="JS/auth.js"></script>
+
+</body>
+
+</html>

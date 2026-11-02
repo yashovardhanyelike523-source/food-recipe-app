@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Food Recipe App</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <span>🍳</span>
+            <h1>Food Recipe App</h1>
+        </div>
+
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="recipes.html">Recipes</a>
+            <a href="categories.html">Categories</a>
+            <a href="saved.html">Saved Recipes</a>
+            <a href="about.html">About</a>
+        </nav>
+
+        <div class="user-area" id="userArea">
+
+            <a href="signin.html" class="signin">
+                Sign In
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="small-title">
+                GOOD FOOD, A BETTER YOU
+            </p>
+
+            <h2>
+                Discover Delicious<br>
+                Recipes from Around the World
+            </h2>
+
+            <p class="hero-text">
+                Explore, cook, and enjoy recipes from different cultures.
+                Find your next favorite dish today!
+            </p>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for a recipe, cuisine or ingredient..."
+                >
+
+                <button onclick="searchRecipes()">
+                    Search
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="categories" id="categories">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Explore by Cuisine</h2>
+
+                <p>
+                    Discover recipes from different parts of the world
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="category-container">
+
+            <div class="category"
+                 onclick="filterCuisine('Indian')">
+
+                <div class="category-icon">🍛</div>
+
+                <h3>Indian</h3>
+
+            </div>
+
+
+            <div class="category"
+                 onclick="filterCuisine('Italian')">
+
+                <div class="category-icon">🍕</div>
+
+                <h3>Italian</h3>
+
+            </div>
+
+
+            <div class="category"
+                 onclick="filterCuisine('Chinese')">
+
+                <div class="category-icon">🥢</div>
+
+                <h3>Chinese</h3>
+
+            </div>
+
+
+            <div class="category"
+                 onclick="filterCuisine('Japanese')">
+
+                <div class="category-icon">🍣</div>
+
+                <h3>Japanese</h3>
+
+            </div>
+
+
+            <div class="category"
+                 onclick="filterCuisine('Mexican')">
+
+                <div class="category-icon">🌮</div>
+
+                <h3>Mexican</h3>
+
+            </div>
+
+
+            <div class="category"
+                 onclick="filterCuisine('American')">
+
+                <div class="category-icon">🍔</div>
+
+                <h3>American</h3>
+
+            </div>
+
+
+            <div class="category"
+                 onclick="filterCuisine('French')">
+
+                <div class="category-icon">🥐</div>
+
+                <h3>French</h3>
+
+            </div>
+
+
+            <div class="category"
+                 onclick="filterCuisine('Thai')">
+
+                <div class="category-icon">🍜</div>
+
+                <h3>Thai</h3>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="recipes" id="recipes">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Popular Recipes</h2>
+
+                <p>
+                    Try our most loved recipes from around the world
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="recipe-container">
+
+        </div>
+
+    </section>
+
+
+    <section class="about" id="about">
+
+        <div>
+
+            <h2>
+                Cook. Share. Enjoy.
+            </h2>
+
+            <p>
+                Join our community of food lovers and explore amazing
+                recipes from different cultures around the world.
+            </p>
+
+        </div>
+
+        <div class="about-icon">
+            🌿
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            Food Recipe App
+        </p>
+
+    </footer>
+
+
+    <script src="JS/script.js"></script>
+    <script src="JS/auth.js"></script>
+
+</body>
+
+</html>

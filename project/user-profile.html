@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>User Profile - Food Recipe App</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+
+        <span>🍳</span>
+
+        <h1>Food Recipe App</h1>
+
+    </div>
+
+
+    <nav>
+
+        <a href="admin.html">
+            Dashboard
+        </a>
+
+        <a href="index.html">
+            Website
+        </a>
+
+    </nav>
+
+
+    <div class="user-area">
+
+        <span class="welcome-user">
+            👑 Administrator
+        </span>
+
+        <button
+            class="logout-button"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main class="profile-page">
+
+
+    <div class="profile-card">
+
+
+        <a
+            href="admin.html"
+            class="back-dashboard"
+        >
+            ← Back to Dashboard
+        </a>
+
+
+
+        <div class="profile-header">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <p class="small-title">
+                USER PROFILE
+            </p>
+
+            <h2 id="profileName">
+                Loading...
+            </h2>
+
+            <p>
+                Food Recipe App Member
+            </p>
+
+        </div>
+
+
+
+        <div class="profile-details">
+
+
+            <div class="profile-detail">
+
+                <span>
+                    👤
+                </span>
+
+                <div>
+
+                    <small>
+                        Full Name
+                    </small>
+
+                    <strong id="profileFullName">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="profile-detail">
+
+                <span>
+                    📧
+                </span>
+
+                <div>
+
+                    <small>
+                        Email Address
+                    </small>
+
+                    <strong id="profileEmail">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="profile-detail">
+
+                <span>
+                    🛡️
+                </span>
+
+                <div>
+
+                    <small>
+                        Account Role
+                    </small>
+
+                    <strong id="profileRole">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="profile-detail">
+
+                <span>
+                    ✅
+                </span>
+
+                <div>
+
+                    <small>
+                        Account Status
+                    </small>
+
+                    <strong id="profileStatus">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="profile-detail">
+
+                <span>
+                    ❤️
+                </span>
+
+                <div>
+
+                    <small>
+                        Saved Recipes
+                    </small>
+
+                    <strong id="savedCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <section class="profile-saved">
+
+            <h2>
+                ❤️ Saved Recipes
+            </h2>
+
+            <p id="savedMessage">
+                Loading saved recipes...
+            </p>
+
+
+            <div
+                id="profileSavedRecipes"
+                class="profile-recipe-grid"
+            ></div>
+
+        </section>
+
+
+
+        <div class="profile-actions">
+
+            <button
+                class="delete-profile"
+                onclick="deleteProfile()"
+            >
+                🗑️ Delete User
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        Food Recipe App
+    </p>
+
+</footer>
+
+
+
+<script src="JS/auth.js"></script>
+
+
+<script>
+
+
+const PROFILE_API =
+    "https://dummyjson.com/recipes";
+
+
+let currentUserIndex;
+
+
+
+function checkAdmin() {
+
+    let loggedInUser =
+        JSON.parse(
+            localStorage.getItem(
+                "loggedInUser"
+            )
+        );
+
+
+    if (
+        !loggedInUser ||
+        loggedInUser.role !== "admin"
+    ) {
+
+        window.location.href =
+            "signin.html";
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+
+async function loadProfile() {
+
+    if (!checkAdmin()) {
+
+        return;
+
+    }
+
+
+    let params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    let index =
+        params.get("id");
+
+
+    if (
+        index === null
+    ) {
+
+        window.location.href =
+            "admin.html";
+
+        return;
+
+    }
+
+
+    let users =
+        JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
+
+
+    let user =
+        users[index];
+
+
+    if (!user) {
+
+        window.location.href =
+            "admin.html";
+
+        return;
+
+    }
+
+
+    currentUserIndex =
+        Number(index);
+
+
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        user.name;
+
+
+    document.getElementById(
+        "profileFullName"
+    ).textContent =
+        user.name;
+
+
+    document.getElementById(
+        "profileEmail"
+    ).textContent =
+        user.email;
+
+
+    document.getElementById(
+        "profileRole"
+    ).textContent =
+        user.role === "admin"
+            ? "Administrator"
+            : "User";
+
+
+    document.getElementById(
+        "profileStatus"
+    ).textContent =
+        "Registered";
+
+
+    await loadUserSavedRecipes(
+        user.email
+    );
+
+}
+
+
+
+async function loadUserSavedRecipes(email) {
+
+    let key =
+        "savedRecipes_" +
+        email;
+
+
+    let savedRecipes =
+        JSON.parse(
+            localStorage.getItem(key)
+        ) || [];
+
+
+    document.getElementById(
+        "savedCount"
+    ).textContent =
+        savedRecipes.length;
+
+
+    let container =
+        document.getElementById(
+            "profileSavedRecipes"
+        );
+
+
+    let message =
+        document.getElementById(
+            "savedMessage"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (
+        savedRecipes.length === 0
+    ) {
+
+        message.textContent =
+            "This user has not saved any recipes yet.";
+
+        return;
+
+    }
+
+
+    message.textContent =
+        "Recipes saved by this user";
+
+
+    for (
+        let i = 0;
+        i < savedRecipes.length;
+        i++
+    ) {
+
+        try {
+
+            let response =
+                await fetch(
+                    PROFILE_API +
+                    "/" +
+                    savedRecipes[i]
+                );
+
+
+            let recipe =
+                await response.json();
+
+
+            if (
+                recipe &&
+                recipe.id
+            ) {
+
+                let card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "profile-recipe-card";
+
+
+                card.innerHTML = `
+
+                    <img
+                        src="${recipe.image}"
+                        alt="${recipe.name}"
+                    >
+
+                    <div class="profile-recipe-content">
+
+                        <h3>
+                            ${recipe.name}
+                        </h3>
+
+                        <p>
+                            🌎 ${recipe.cuisine || "Unknown"}
+                        </p>
+
+                        <p>
+                            ⏱️ ${recipe.prepTimeMinutes} min
+                            &nbsp; | &nbsp;
+                            🍽️ ${recipe.servings}
+                        </p>
+
+                        <button
+                            onclick="viewRecipe('${recipe.id}')"
+                        >
+                            View Recipe
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(card);
+
+            }
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
+    }
+
+}
+
+
+
+function viewRecipe(id) {
+
+    window.location.href =
+        "recipe-details.html?id=" +
+        id;
+
+}
+
+
+
+function deleteProfile() {
+
+    let users =
+        JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
+
+
+    if (
+        currentUserIndex === undefined ||
+        !users[currentUserIndex]
+    ) {
+
+        return;
+
+    }
+
+
+    let user =
+        users[currentUserIndex];
+
+
+    if (
+        confirm(
+            "Are you sure you want to delete " +
+            user.name +
+            "?"
+        )
+    ) {
+
+        localStorage.removeItem(
+            "savedRecipes_" +
+            user.email
+        );
+
+
+        users.splice(
+            currentUserIndex,
+            1
+        );
+
+
+        localStorage.setItem(
+            "users",
+            JSON.stringify(users)
+        );
+
+
+        alert(
+            "User deleted successfully."
+        );
+
+
+        window.location.href =
+            "admin.html";
+
+    }
+
+}
+
+
+
+loadProfile();
+
+
+</script>
+
+
+</body>
+
+</html>
