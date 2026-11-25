@@ -28,7 +28,6 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-right: auto;
 }
 
 
@@ -45,7 +44,9 @@ header {
 
 nav {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 25px;
+    margin-left: 30px;
 }
 
 
@@ -720,6 +721,7 @@ footer {
 /* USER AREA */
 
 .user-area {
+    margin-left: auto;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -2008,3 +2010,262 @@ footer {
 .user-actions button { white-space: nowrap; }
 @media (max-width: 900px) { header { height: auto; min-height: 70px; flex-wrap: wrap; gap: 12px; padding: 14px 5%; } nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; gap: 15px; } nav a { padding: 8px 0; } .logo h1 { font-size: 21px; } .user-area { margin-left: auto; } }
 @media (max-width: 600px) { .recipe-container { grid-template-columns: repeat(1, minmax(0, 1fr)); } .hero-content { width: 90%; } .hero h2 { font-size: 30px; } .user-row { align-items: flex-start; flex-direction: column; } .admin-actions { flex-direction: column; gap: 12px; padding: 20px; } }
+
+
+/* Role selector and badges */
+.auth-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fff;
+    margin-bottom: 16px;
+    color: #333;
+    outline: none;
+    font-family: inherit;
+}
+.auth-select:focus {
+    border-color: #f4511e;
+}
+.auth-demo-hints {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fff8f5;
+    border-left: 3px solid #f4511e;
+    border-radius: 6px;
+    text-align: left;
+    font-size: 13px;
+    color: #665;
+}
+.auth-demo-hints p {
+    margin: 4px 0;
+}
+.role-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    margin-left: 6px;
+}
+.role-badge, .role-user {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+.role-chef {
+    background: #fff3e0;
+    color: #e65100;
+}
+.role-admin {
+    background: #fce4ec;
+    color: #c2185b;
+}
+.chef-badge-details {
+    display: inline-block;
+    background: #fff3e0;
+    color: #d84315;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-left: 10px;
+}
+
+/* Chef Studio & Add Recipe */
+.add-recipe-page {
+    padding: 30px 6% 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+.add-recipe-container {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 35px;
+    margin-top: 30px;
+    align-items: start;
+}
+.add-recipe-card, .my-recipes-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0eded;
+}
+.add-recipe-card h2, .my-recipes-card h2 {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    color: #33251f;
+    margin-bottom: 8px;
+}
+.add-recipe-card > p, .my-recipes-card > p {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+.recipe-form .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.recipe-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.recipe-form label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #443;
+    margin-bottom: 6px;
+}
+.recipe-form input,
+.recipe-form select,
+.recipe-form textarea {
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.recipe-form input:focus,
+.recipe-form select:focus,
+.recipe-form textarea:focus {
+    border-color: #f4511e;
+}
+.field-hint {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+.ingredients-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.ingredient-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+}
+.btn-remove-ing {
+    background: #ff5252;
+    color: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-remove-ing:hover {
+    background: #d32f2f;
+}
+.btn-add-ing {
+    background: #f1f1f1;
+    color: #444;
+    border: 1px dashed #ccc;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    align-self: flex-start;
+}
+.btn-add-ing:hover {
+    background: #e5e5e5;
+    border-color: #bbb;
+}
+.image-preview {
+    margin-top: 10px;
+}
+.image-preview img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+.submit-recipe-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.form-alert-success {
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #2e7d32;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.no-recipes-placeholder {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
+}
+.placeholder-icon {
+    font-size: 42px;
+    display: block;
+    margin-bottom: 10px;
+}
+.custom-recipe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 650px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+.custom-recipe-item {
+    display: flex;
+    gap: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 12px;
+    background: #fafafa;
+    align-items: center;
+}
+.custom-thumb {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+.custom-recipe-info {
+    flex: 1;
+    min-width: 0;
+}
+.custom-recipe-info h3 {
+    font-size: 16px;
+    margin: 4px 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: Georgia, serif;
+}
+.author-meta {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 8px;
+}
+@media (max-width: 900px) {
+    .add-recipe-container {
+        grid-template-columns: 1fr;
+    }
+}

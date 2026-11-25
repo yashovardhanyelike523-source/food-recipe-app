@@ -19,11 +19,19 @@ npm run build
 npm run preview
 ```
 
-## Demo administrator account
+## Demo Accounts
+
+### Administrator
+- Role: **Admin**
 - Email: `admin@foodrecipe.com`
 - Password: `admin123`
 
-Create a normal user through Sign Up to test the User module. The Admin dashboard is available at `/admin` after administrator login.
+### Chef
+- Role: **Chef**
+- Email: `chef@foodrecipe.com`
+- Password: `chef123`
+
+You can also create custom User, Chef, or Admin accounts anytime via the **Sign Up** page.
 
 ## Local Storage keys
 - `users`: registered demo accounts
